@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../focuspoint.css">
+</head>
+<body>
+    <h1>The focuspoint</h1>
+
+
+    <h2>Edit and view</h2>
+    <figure style="background-image: url('image.jpg');" class="lfy-focuspoint-view">
+        <div class="lfy-focuspoint-edit">
+            <button class="lfy-focuspoint-button"></button>
+        </div>
+    </figure>
+
+
+    <h2>
+        View only
+        <label>
+            <span style="font-size: 16px; font-weight: normal;">Update on:</span>
+            <select name="view_binder_event_selector">
+                <option value="start">Start</option>
+                <option value="move" selected>Move</option>
+                <option value="stop">Stop</option>
+            </select>
+        </label>
+    </h2>
+    <figure style="background-image: url('image.jpg'); width: 300px; height:400px;" class="lfy-focuspoint-view second"></figure>
+
+
+    <script src="../bower_components/classlist/classList.min.js"></script>
+    <script src="../bower_components/requestAnimationFrame/app/requestAnimationFrame.js"></script>
+    <script src="../focuspoint.js"></script>
+    <script src="demo.js"></script>
+</body>
+</html>
