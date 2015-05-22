@@ -1,0 +1,67 @@
+/********************************/
+/* Reset css */
+/********************************/
+.lfy-focuspoint-view,
+.lfy-focuspoint-edit,
+.lfy-focuspoint-button {
+    -webkkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+/********************************/
+/* View the focuspoint */
+/********************************/
+.lfy-focuspoint-view {
+    position: relative;
+    width: 640px;
+    height: 250px;
+    background-color: #eee;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+    .lfy-focuspoint-view .lfy-focuspoint-edit {
+        position: absolute;
+        top: 30px; right: 30px; bottom: 30px; left: 30px;
+    }
+
+/********************************/
+/* Edit the focuspoint */
+/********************************/
+.lfy-focuspoint-edit {    
+}
+
+    .lfy-focuspoint-edit .lfy-focuspoint-button {
+        position: absolute;
+        top: 50%; left: 50%;/* button position until js is loaded */
+    }
+
+.lfy-focuspoint-edit.lfy-focuspoint-edit-hidecursor {
+    cursor: none;
+}
+
+    .lfy-focuspoint-edit.lfy-focuspoint-edit-hidecursor .lfy-focuspoint-button {
+        cursor: none;
+    }
+
+/********************************/
+/* The focuspoint button */
+/********************************/
+.lfy-focuspoint-button {
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+
+    text-decoration: none;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, .7);
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    outline: none;
+}
