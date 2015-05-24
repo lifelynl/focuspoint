@@ -1,11 +1,9 @@
 /********************************/
-/* Reset css */
+/* Reset some css */
 /********************************/
 .lfy-focuspoint-view,
 .lfy-focuspoint-edit,
 .lfy-focuspoint-button {
-    -webkkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     border: 0;
     background: transparent;
@@ -14,31 +12,28 @@
 }
 
 /********************************/
-/* View the focuspoint */
+/* Focuspoint view container */
 /********************************/
 .lfy-focuspoint-view {
     position: relative;
-    width: 640px;
-    height: 250px;
-    background-color: #eee;
     -webkit-background-size: cover;
-    background-size: cover;
+            background-size: cover;
 }
 
     .lfy-focuspoint-view .lfy-focuspoint-edit {
         position: absolute;
-        top: 30px; right: 30px; bottom: 30px; left: 30px;
+        top: 30px; right: 30px; bottom: 30px; left: 30px; /* button boundary of 30px */
     }
 
 /********************************/
-/* Edit the focuspoint */
+/* Focuspoint edit container */
 /********************************/
 .lfy-focuspoint-edit {    
 }
 
     .lfy-focuspoint-edit .lfy-focuspoint-button {
         position: absolute;
-        top: 50%; left: 50%;/* button position until js is loaded */
+        top: 50%; left: 50%; /* button position until js is loaded */
     }
 
 .lfy-focuspoint-edit.lfy-focuspoint-edit-hidecursor {
@@ -50,12 +45,12 @@
     }
 
 /********************************/
-/* The focuspoint button */
+/* Focuspoint button component */
 /********************************/
 .lfy-focuspoint-button {
     width: 40px;
     height: 40px;
-    margin-top: -20px;
+    margin-top: -20px; /* set button's origin to center */
     margin-left: -20px;
 
     text-decoration: none;
