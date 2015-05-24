@@ -1,0 +1,33 @@
+{
+  "name": "lifely-focuspoint",
+  "description": "",
+  "version": "1.0.0",
+  "author": "Lifely <info@lifely.nl>",
+  "contributors": [
+    "Jesse de Vries <jessedvrs@gmail.com>"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lifelynl/focuspoint"
+  },
+  "main": "Gruntfile.js",
+  "scripts": {
+    "distribute": "node_modules/.bin/grunt distribute",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^3.0.0",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.12.3",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "load-grunt-config": "^0.17.1"
+  },
+  "dependencies": {
+    "bower": "^1.4.1"
+  }
+}
