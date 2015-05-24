@@ -1,11 +1,15 @@
 {
   "name": "lifely-focuspoint",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "authors": [
     "Lifely <info@lifely.nl>",
     "Jesse de Vries <jessedvrs@gmail.com>"
   ],
   "license": "MIT",
+  "main": [
+    "dist/focuspoint.min.js",
+    "dist/focuspoint.min.css",
+  ],
   "ignore": [
     "**/.*",
     "bower_components",
