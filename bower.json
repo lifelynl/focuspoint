@@ -8,8 +8,8 @@
   ],
   "license": "MIT",
   "main": [
-    "dist/focuspoint.min.js",
-    "dist/focuspoint.min.css"
+    "dist/focuspoint.js",
+    "dist/focuspoint.css"
   ],
   "ignore": [
     "**/.*",

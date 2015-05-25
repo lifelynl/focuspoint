@@ -3,7 +3,7 @@ module.exports = {
 
     // ------------------------------------
     //   Development task
-    //   build development version
+    //   build distribution version
     //   initialize watcher
     // ------------------------------------
     'default': [
@@ -19,55 +19,32 @@ module.exports = {
 
     // ------------------------------------
     //   Build task
-    //   build development version
+    //   build a distribution version
     // ------------------------------------
     'build': [
 
-        // Pre
-        'clean:build',
-
-        // Pre-copy
-        'copy:pre-js',
-        'copy:pre-css',
-
-        // Autoprefixer processor
-        'autoprefixer:css',
-
-        // Post-copy
-        'copy:post-build-js',
-        'copy:post-build-css',
-
-        // Post
+        // Clean up temporary folder
         'clean:tmp',
 
-    ],
-
-
-    // ------------------------------------
-    //   Distribute task
-    //   build distribution version
-    // ------------------------------------
-    'distribute': [
-
-        // Pre
-        'clean:dist',
-
-        // Pre-copy
-        'copy:pre-js',
-        'copy:pre-css',
+        // Copy from source
+        'copy:src-js',
+        'copy:src-css',
 
         // Autoprefixer processor
         'autoprefixer:css',
 
-        // Uglify
+        // Minify
         'uglify:js',
         'cssmin:css',
 
-        // Post-copy
-        'copy:post-dist-js',
-        'copy:post-dist-css',
+        // Clean up distribution folder
+        'clean:dist',
 
-        // Post
+        // Copy to distribution folder
+        'copy:dist-js',
+        'copy:dist-css',
+
+        // Clean up temporary folder
         'clean:tmp',
 
     ]

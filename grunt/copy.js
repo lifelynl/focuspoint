@@ -2,29 +2,29 @@
 module.exports = {
 
     // targets
-    'pre-js': {
-        src: 'src/focuspoint.js',
-        dest: '.grunt-tmp/focuspoint.js'
+    'src-js': {
+        cwd: 'src/',
+        src: '**/*.js',
+        dest: '.grunt-tmp/',
+        expand: true
     },
-    'pre-css': {
-        src: 'src/focuspoint.css',
-        dest: '.grunt-tmp/focuspoint.css'
+    'src-css': {
+        cwd: 'src/',
+        src: '**/*.css',
+        dest: '.grunt-tmp/',
+        expand: true
     },
-    'post-build-js': {
-        src: '.grunt-tmp/focuspoint.js',
-        dest: 'build/focuspoint.js'
+    'dist-js': {
+        cwd: '.grunt-tmp/',
+        src: '**/*.js',
+        dest: 'dist/',
+        expand: true
     },
-    'post-build-css': {
-        src: '.grunt-tmp/focuspoint.css',
-        dest: 'build/focuspoint.css'
+    'dist-css': {
+        cwd: '.grunt-tmp/',
+        src: '**/*.css',
+        dest: 'dist/',
+        expand: true
     },
-    'post-dist-js': {
-        src: '.grunt-tmp/focuspoint.js',
-        dest: 'dist/focuspoint.min.js'
-    },
-    'post-dist-css': {
-        src: '.grunt-tmp/focuspoint.css',
-        dest: 'dist/focuspoint.min.css'
-    }
 
 };

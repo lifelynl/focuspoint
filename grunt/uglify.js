@@ -4,10 +4,10 @@ module.exports = {
     // targets
     'js': {
         options: {
-            report: 'min'
+            preserveComments: 'some'
         },
         files: {
-            '.grunt-tmp/focuspoint.js': [ '.grunt-tmp/focuspoint.js' ]
+            '.grunt-tmp/focuspoint.min.js': [ '.grunt-tmp/focuspoint.js' ]
         }
     }
 

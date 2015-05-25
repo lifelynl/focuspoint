@@ -3,12 +3,12 @@ module.exports = {
 
     // targets
     css: {
-        files: [ 'src/*.css' ],
-        tasks: [ 'copy:pre-css', 'autoprefixer:css', 'copy:post-build-css', 'clean:tmp' ]
+        files: [ 'src/**/*.css' ],
+        tasks: [ 'clean:tmp', 'copy:src-css', 'autoprefixer:css', 'cssmin:css', 'clean:dist-css', 'copy:dist-css', 'clean:tmp' ]
     },
     js: {
-        files: [ 'src/*.js' ],
-        tasks: [ 'copy:pre-js', 'copy:post-build-js' ]
+        files: [ 'src/**/*.js' ],
+        tasks: [ 'clean:tmp', 'copy:src-js', 'uglify:js', 'clean:dist-js', 'copy:dist-js', 'clean:tmp' ]
     },
 
     livereload: {
@@ -16,8 +16,7 @@ module.exports = {
             livereload: true
         },
         files: [
-            'build/**/*',
-            'src/**/*'
+            'dist/**/*'
         ]
     }
 

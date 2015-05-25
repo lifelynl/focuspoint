@@ -4,7 +4,9 @@
 .lfy-focuspoint-view,
 .lfy-focuspoint-edit,
 .lfy-focuspoint-button {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
     border: 0;
     background: transparent;
     padding: 0;
@@ -16,7 +18,8 @@
 /********************************/
 .lfy-focuspoint-view {
     position: relative;
-    background-size: cover;
+    -webkit-background-size: cover;
+            background-size: cover;
 }
 
     .lfy-focuspoint-view .lfy-focuspoint-edit {
@@ -53,9 +56,13 @@
     margin-left: -20px;
 
     text-decoration: none;
-    border-radius: 50%;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
     background-color: rgba(255, 255, 255, .7);
-    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+       -moz-box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, .1);
     cursor: pointer;
     outline: none;
 }

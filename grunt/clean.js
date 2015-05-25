@@ -2,12 +2,13 @@
 module.exports = {
 
     // targets
-    'build': [
-        '.grunt-tmp/',
-        'build/*'
+    'dist-css': [
+        'dist/**/*.css',
+    ],
+    'dist-js': [
+        'dist/**/*.js',
     ],
     'dist': [
-        '.grunt-tmp/',
         'dist/*'
     ],
     'tmp': [

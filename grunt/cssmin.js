@@ -4,10 +4,10 @@ module.exports = {
     // targets
     'css': {
         options: {
-            report: 'min'
+            preserveComments: 'some'
         },
         files: {
-            '.grunt-tmp/focuspoint.css': [ '.grunt-tmp/focuspoint.css' ]
+            '.grunt-tmp/focuspoint.min.css': [ '.grunt-tmp/focuspoint.css' ]
         }
     }
 
