@@ -460,7 +460,7 @@
                 if (typeof options.x !== 'number') options.x = 0.5;
                 if (typeof options.y !== 'number') options.y = 0.5;
                 if (!options.button_elm) {
-                    var btn = element.querySelector('lfy-focuspoint-button');
+                    var btn = element.querySelector('.lfy-focuspoint-button');
                     if (!Helpers.isDOMElement(btn)) throw 'options.button_elm is not given, and could not find a button with class "lfy-focuspoint-button" as fallback';
 
                     options.button_elm = btn;
