@@ -14,6 +14,9 @@
   "ignore": [
     "**/.*",
     "bower_components",
+    "doc",
+    "grunt",
+    "node_modules",
     "demo"
   ],
   "dependencies": {
