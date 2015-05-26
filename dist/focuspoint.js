@@ -187,6 +187,7 @@
 
                 // Handlers
                 var start = function (event) {
+                    event.preventDefault();
                     touch = event.constructor.name === 'TouchEvent' && event.touches;
                     change('start', event);
                     document.addEventListener(touch ? 'touchmove' : 'mousemove', move);
@@ -194,12 +195,14 @@
                 };
 
                 var move = function (event) {
+                    event.preventDefault();
                     window.requestAnimationFrame(function () {
                         change('move', event);
                     });
                 };
 
                 var end = function (event) {
+                    event.preventDefault();
                     change('end', event);
                     document.removeEventListener('touchmove', move);
                     document.removeEventListener('touchend', end);
