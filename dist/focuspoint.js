@@ -49,17 +49,23 @@
         },
 
         // Get position by mouse event
-        getPositionInElementByMouseEvent: function getPositionInElementByMouseEvent (elm, start_current, start_pos, mouseEvent) {
+        getPositionInElementByEvent: function getPositionInElementByEvent (elm, start_current, start_pos, event, touch) {
             try {
                 if (!Helpers.isDOMElement(elm)) throw 'elm is not a DOM element.';
-                if (typeof mouseEvent === 'undefined') throw 'mouseEvent is undefined.';
-                if (typeof mouseEvent.pageX !== 'number') throw 'mouseEvent.pageX not found.';
-                if (typeof mouseEvent.pageY !== 'number') throw 'mouseEvent.pageY not found.';
+                if (typeof event === 'undefined') throw 'event is undefined.';
+                if (touch) {
+                    if (typeof event.touches !== 'undefined' && event.touches.length <= 0) throw 'no touches found in event.';
+                    if (typeof event.touches[0].pageX !== 'number') throw 'event.touches[0].pageX not found.';
+                    if (typeof event.touches[0].pageY !== 'number') throw 'event.touches[0].pageY not found.';
+                } else {
+                    if (typeof event.pageX !== 'number') throw 'event.pageX not found.';
+                    if (typeof event.pageY !== 'number') throw 'event.pageY not found.';
+                }
 
                 var r = elm.getBoundingClientRect();
 
-                var x_delta = mouseEvent.pageX - start_pos.x;
-                var y_delta = mouseEvent.pageY - start_pos.y;
+                var x_delta = (touch ? event.touches[0].pageX : event.pageX) - start_pos.x;
+                var y_delta = (touch ? event.touches[0].pageY : event.pageY) - start_pos.y;
                 
                 var x_delta_factor = x_delta / r.width;
                 var y_delta_factor = y_delta / r.height;
@@ -76,7 +82,7 @@
                 };
 
             } catch(e) {
-                return new Library.InternalError('Helpers.getPositionInElementByMouseEvent()', e);
+                return new Library.InternalError('Helpers.getPositionInElementByEvent()', e);
             }
         },
 
@@ -133,30 +139,37 @@
                 if (hide_cursor && typeof no_cursor_class !== 'string') throw 'no_cursor_class is not a string';
 
                 // Start mouse position
-                var start_pos = {}, start_current = {};
+                var start_pos = {}, start_current = {}, touch;
 
                 // Universal handler
                 var change = function (type, mouseEvent) {
 
-                    // Update mouse start position
-                    if (type === 'start') {
-                        start_pos.x = mouseEvent.pageX;
-                        start_pos.y = mouseEvent.pageY;
-                        start_current.x = current.x;
-                        start_current.y = current.y;
-                    }
+                    if(type !== 'end') {
 
-                    // Determine position by mouse event
-                    var pos = Helpers.getPositionInElementByMouseEvent(container_elm, start_current, start_pos, mouseEvent);
+                        // Update mouse start position
+                        if (type === 'start') {
+                            if (touch) {
+                                start_pos.x = mouseEvent.touches[0].pageX;
+                                start_pos.y = mouseEvent.touches[0].pageY;
+                            } else {
+                                start_pos.x = mouseEvent.pageX;
+                                start_pos.y = mouseEvent.pageY;
+                            }
+                            start_current.x = current.x;
+                            start_current.y = current.y;
+                        }
 
-                    // Check whether the position has changed
-                    var changed = pos.x !== current.x || pos.y !== current.y;
+                        // Determine position by mouse event
+                        var pos = Helpers.getPositionInElementByEvent(container_elm, start_current, start_pos, mouseEvent, touch);
 
-                    // Update current coordinates and fire 'change' event
-                    if (changed) {
-                        current.x = pos.x;
-                        current.y = pos.y;
-                        eventSystem.applyEvent('change', [current.x, current.y]);
+                        // Update current coordinates and fire 'change' event
+                        var changed = pos.x !== current.x || pos.y !== current.y;
+                        if (changed) {
+                            current.x = pos.x;
+                            current.y = pos.y;
+                            eventSystem.applyEvent('change', [current.x, current.y]);
+                        }
+
                     }
 
                     // Fire drag:* event
@@ -174,9 +187,10 @@
 
                 // Handlers
                 var start = function (event) {
+                    touch = event.constructor.name === 'TouchEvent' && event.touches;
                     change('start', event);
-                    document.addEventListener('mousemove', move);
-                    document.addEventListener('mouseup', end);
+                    document.addEventListener(touch ? 'touchmove' : 'mousemove', move);
+                    document.addEventListener(touch ? 'touchend' : 'mouseup', end);
                 };
 
                 var move = function (event) {
@@ -187,18 +201,24 @@
 
                 var end = function (event) {
                     change('end', event);
+                    document.removeEventListener('touchmove', move);
+                    document.removeEventListener('touchend', end);
                     document.removeEventListener('mousemove', move);
                     document.removeEventListener('mouseup', end);
                 };
 
                 // Initial bind
+                button_elm.addEventListener('touchstart', start);
                 button_elm.addEventListener('mousedown', start);
 
                 // Return unbinder
                 return function () {
-                    button_elm.removeEventListener('mouseup', end);
-                    button_elm.removeEventListener('mousemove', move);
+                    button_elm.removeEventListener('touchstart', start);
+                    document.removeEventListener('touchmove', move);
+                    document.removeEventListener('touchend', end);
                     button_elm.removeEventListener('mousedown', start);
+                    document.removeEventListener('mousemove', move);
+                    document.removeEventListener('mouseup', end);
                 };
 
             } catch(e) {
