@@ -49,7 +49,7 @@
         },
 
         // Get position by mouse event
-        getPositionInElementByMouseEvent: function getPositionInElementByMouseEvent (elm, mouseEvent) {
+        getPositionInElementByMouseEvent: function getPositionInElementByMouseEvent (elm, start_current, start_pos, mouseEvent) {
             try {
                 if (!Helpers.isDOMElement(elm)) throw 'elm is not a DOM element.';
                 if (typeof mouseEvent === 'undefined') throw 'mouseEvent is undefined.';
@@ -58,18 +58,21 @@
 
                 var r = elm.getBoundingClientRect();
 
-                var x = mouseEvent.pageX - r.left;
-                var y = mouseEvent.pageY - r.top;
+                var x_delta = mouseEvent.pageX - start_pos.x;
+                var y_delta = mouseEvent.pageY - start_pos.y;
                 
-                var x_factor = x / r.width;
-                var y_factor = y / r.height;
+                var x_delta_factor = x_delta / r.width;
+                var y_delta_factor = y_delta / r.height;
 
-                var bounded_x_factor = Helpers.bound(x_factor, 0, 1);
-                var bounded_y_factor = Helpers.bound(y_factor, 0, 1);
+                var x_factor = start_current.x + x_delta_factor;
+                var y_factor = start_current.y + y_delta_factor;
+
+                var x_factor_bounded = Helpers.bound(x_factor, 0, 1);
+                var y_factor_bounded = Helpers.bound(y_factor, 0, 1);
 
                 return {
-                    x: bounded_x_factor,
-                    y: bounded_y_factor
+                    x: x_factor_bounded,
+                    y: y_factor_bounded
                 };
 
             } catch(e) {
@@ -129,11 +132,24 @@
                 if (typeof hide_cursor !== 'boolean') throw 'hide_cursor is not a boolean';
                 if (hide_cursor && typeof no_cursor_class !== 'string') throw 'no_cursor_class is not a string';
 
+                // Start mouse position
+                var start_pos = {}, start_current = {};
+
                 // Universal handler
                 var change = function (type, mouseEvent) {
 
-                    // Determine position and whether the position has changed
-                    var pos = Helpers.getPositionInElementByMouseEvent(container_elm, mouseEvent);
+                    // Update mouse start position
+                    if (type === 'start') {
+                        start_pos.x = mouseEvent.pageX;
+                        start_pos.y = mouseEvent.pageY;
+                        start_current.x = current.x;
+                        start_current.y = current.y;
+                    }
+
+                    // Determine position by mouse event
+                    var pos = Helpers.getPositionInElementByMouseEvent(container_elm, start_current, start_pos, mouseEvent);
+
+                    // Check whether the position has changed
                     var changed = pos.x !== current.x || pos.y !== current.y;
 
                     // Update current coordinates and fire 'change' event
