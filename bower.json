@@ -17,8 +17,11 @@
     "bower_components",
     "node_modules",
     "doc",
+    "jsdoc-conf.json",
+    "Gruntfile.js",
     "grunt",
-    "demo"
+    "demo",
+    "package.json"
   ],
   "dependencies": {
     "classlist": "~2014.12.13",
