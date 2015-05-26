@@ -156,25 +156,34 @@
                     }
                 };
 
-                // Bind
-                button_elm.addEventListener('mousedown', function (event) {
+                // Handlers
+                var start = function (event) {
                     change('start', event);
-
-                    var move = function (event) {
-                        window.requestAnimationFrame(function () {
-                            change('move', event);
-                        });
-                    };
-
-                    var up = function (event) {
-                        change('end', event);
-                        document.removeEventListener('mousemove', move);
-                        document.removeEventListener('mouseup', up);
-                    };
-
                     document.addEventListener('mousemove', move);
-                    document.addEventListener('mouseup', up);
-                });
+                    document.addEventListener('mouseup', end);
+                };
+
+                var move = function (event) {
+                    window.requestAnimationFrame(function () {
+                        change('move', event);
+                    });
+                };
+
+                var end = function (event) {
+                    change('end', event);
+                    document.removeEventListener('mousemove', move);
+                    document.removeEventListener('mouseup', end);
+                };
+
+                // Initial bind
+                button_elm.addEventListener('mousedown', start);
+
+                // Return unbinder
+                return function () {
+                    button_elm.removeEventListener('mouseup', end);
+                    button_elm.removeEventListener('mousemove', move);
+                    button_elm.removeEventListener('mousedown', start);
+                };
 
             } catch(e) {
                 return new Library.InternalError('Helpers.initializeDrag()', e);
@@ -355,6 +364,10 @@
                     return new Library.InternalError('Library.EventSystem().unregister()', e);
                 }
             };
+
+            self.unregisterAll = function unregisterAll () {
+                self.callbacks = [];
+            }; 
         },
 
         // View options
@@ -451,11 +464,13 @@
             });
             var _c = new Library.Current(_opts.x, _opts.y);
             var _d = Helpers.setBackgroundPositionToElm(_opts.elm, _c.x, _c.y);
+            var _killed = false;
 
             Api.current = _c;
 
             Api.set = function (x, y) {
                 try {
+                    if (_killed) throw 'this Focuspoint.View has been killed';
                     if (typeof x !== 'number') throw 'the given x coordinate is not a number';
                     if (typeof y !== 'number') throw 'the given y coordinate is not a number';
                     if (x < 0 || x > 1) throw 'the x coordinate must be a number between 0 and 1';
@@ -472,6 +487,18 @@
                 }
             };
 
+            Api.kill = function () {
+                try {
+                    if (_killed) throw 'this Focuspoint.View has already been killed';
+
+                    _killed = true;
+                    delete Api.current;
+
+                } catch(e) {
+                    return new Library.ApiError('Focuspoint.View().kill()', e);
+                }
+            };
+
         },
 
         /**************************************************************/
@@ -485,14 +512,16 @@
             });
             var _e = new Library.EventSystem();
             var _c = new Library.Current(_opts.x, _opts.y);
-            Helpers.initializeDrag(_opts.elm, _opts.button_elm, _c, _e, _opts.hide_cursor, _opts.no_cursor_class);
-            var _v = Helpers.attachViews(_opts.view_elm, _c, _e.register);
+            var _d = Helpers.initializeDrag(_opts.elm, _opts.button_elm, _c, _e, _opts.hide_cursor, _opts.no_cursor_class);
+            if(_opts.view_elm) var _v = Helpers.attachViews(_opts.view_elm, _c, _e.register);
             var _b = Helpers.attachButton(_opts.button_elm, _c, _e.register);
+            var _killed = false;
 
             Api.current = _c;
 
             Api.set = function (x, y) {
                 try {
+                    if (_killed) throw 'this Focuspoint.Edit has been killed';
                     if (typeof x !== 'number') throw 'the given x coordinate is not a number';
                     if (typeof y !== 'number') throw 'the given y coordinate is not a number';
                     if (x < 0 || x > 1) throw 'the x coordinate must be a number between 0 and 1';
@@ -512,6 +541,7 @@
 
             Api.on = function (event, handler) {
                 try {
+                    if (_killed) throw 'this Focuspoint.Edit has been killed';
                     if (typeof event !== 'string') throw 'event is not a string';
                     if (typeof handler !== 'function') throw 'handler is not a function';
                     if (_e.possibleEvents.indexOf(event) === -1) throw 'event "' + event + '" does not exist';
@@ -525,6 +555,7 @@
 
             Api.off = function (id) {
                 try {
+                    if (_killed) throw 'this Focuspoint.Edit has been killed';
                     if (typeof id !== 'number') throw 'id is not a number';
 
                     _e.unregister(id);
@@ -534,10 +565,19 @@
                 }
             };
 
-            // Api.kill = function () {
-            //     _e.unregister(_v);
-            //     delete Api;
-            // };
+            Api.kill = function () {
+                try {
+                    if (_killed) throw 'this Focuspoint.Edit has already been killed';
+
+                    _e.unregisterAll();
+                    _d();
+                    _killed = true;
+                    delete Api.current;
+
+                } catch(e) {
+                    return new Library.ApiError('Focuspoint.Edit().kill()', e);
+                }
+            };
 
         },
 
