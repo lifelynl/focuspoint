@@ -487,17 +487,32 @@
     };
 
 
-    /*********************************************************************/
-    /* Focuspoint API */
-    /*********************************************************************/
+    /**
+     * Focuspoint API
+     *
+     * @namespace Focuspoint
+     */
     global.Focuspoint = {
 
-        /**************************************************************/
-        /* View constructor */
-        /**************************************************************/
+        /**
+         * View constructor
+         * 
+         * @constructor Focuspoint.View
+         * @memberof Focuspoint
+         * @argument {Element} element - The View component element
+         * @argument {Object} options - The options for the View component
+         * @argument {Number} options.x - X coordinate to start with (number between 0 and 1)
+         * @argument {Number} options.y - Y coordinate to start with (number between 0 and 1)
+         *
+         * @example
+         * var view_element = document.querySelector('.lfy-focuspoint-view');
+         * var focuspoint = new Focuspoint.View(view_element, {
+         *     x: 0.752,
+         *     y: 0.251
+         * });
+         */
         View: function View (element, options) {
 
-            var Api = this;
             var _opts = new Library.ViewOptions(element, options, function (err) {
                 new Library.ApiError('Focuspoint.View()', err);
             });
@@ -505,8 +520,36 @@
             var _d = Helpers.setBackgroundPositionToElm(_opts.elm, _c.x, _c.y);
             var _killed = false;
 
+            var Api = this;
+
+            /**
+             * @memberof Focuspoint.View
+             * @name current
+             * @type Object
+             * @readonly
+             *
+             * @description
+             * Holds the current x and y values
+             *
+             * @example
+             * var x = focuspoint.current.x;
+             */
             Api.current = _c;
 
+            /**
+             * @memberof Focuspoint.View
+             * @name set
+             * @type Function
+             *
+             * @description
+             * Changes the x and y. This will:
+             *  - Change the binded background-position
+             *  - Update the coordinates in focuspoint.current
+             *
+             * @example
+             * focuspoint.set(0.345, 0.577);
+             *
+             */
             Api.set = function (x, y) {
                 try {
                     if (_killed) throw 'this Focuspoint.View has been killed';
@@ -526,6 +569,19 @@
                 }
             };
 
+            /**
+             * @memberof Focuspoint.View
+             * @name kill
+             * @type Function
+             *
+             * @description
+             * Kills the View instance, unbinds event handlers when present
+             *
+             * @example
+             * focuspoint.kill();
+             * delete focuspoint; // To fully kill the object, use 'delete focuspoint;' afterwards
+             *
+             */
             Api.kill = function () {
                 try {
                     if (_killed) throw 'this Focuspoint.View has already been killed';
@@ -540,12 +596,32 @@
 
         },
 
-        /**************************************************************/
-        /* Edit constructor */
-        /**************************************************************/
+        /**
+         * Edit constructor
+         * 
+         * @constructor Focuspoint.Edit
+         * @memberof Focuspoint
+         *
+         * @argument {Element} element - The Edit component element
+         * @argument {Object} options - The options for the Edit component
+         * @argument {Number} [options.x] - X-coordinate to start with (number between 0 and 1)
+         * @argument {Number} [options.y] - Y-coordinate to start with (number between 0 and 1)
+         * @argument {Element/Array} [options.view_elm] - The view element(s) to bind to the Edit component
+         * @argument {Element} [options.button_elm] - The button element when not using the class "lfy-focuspoint-button" or when the button is not inside the Edit component element
+         * @argument {Boolean} [options.hide_cursor] - Whether the cursor should be hidden while moving the button
+         * @argument {String} [options.no_cursor_class] - The class used to disable the cursor
+         *
+         * @example
+         * var edit_element = document.querySelector('.lfy-focuspoint-edit');
+         * var view_element = document.querySelector('.lfy-focuspoint-view');
+         *
+         * var focuspoint = new Focuspoint.Edit(edit_element, {
+         *     view_elm: view_element
+         * });
+         * 
+         */
         Edit: function Edit (element, options) {
 
-            var Api = this;
             var _opts = new Library.EditOptions(element, options, function (err) {
                 new Library.ApiError('Focuspoint.Edit()', err);
             });
@@ -556,8 +632,38 @@
             var _b = Helpers.attachButton(_opts.button_elm, _c, _e.register);
             var _killed = false;
 
+            var Api = this;
+
+            /**
+             * @memberof Focuspoint.Edit
+             * @name current
+             * @type Object
+             * @readonly
+             *
+             * @description
+             * Holds the current x and y values
+             *
+             * @example
+             * var x = focuspoint.current.x;
+             */
             Api.current = _c;
 
+            /**
+             * @memberof Focuspoint.Edit
+             * @name set
+             * @type Function
+             *
+             * @description
+             * Changes the x and y. This will:
+             *  - Change the button position
+             *  - Change the possibly binded background-positions
+             *  - Update the coordinates in focuspoint.current
+             *  - Trigger the 'change' event
+             *
+             * @example
+             * focuspoint.set(0.345, 0.577);
+             *
+             */
             Api.set = function (x, y) {
                 try {
                     if (_killed) throw 'this Focuspoint.Edit has been killed';
@@ -578,6 +684,24 @@
                 }
             };
 
+            /**
+             * @memberof Focuspoint.Edit
+             * @name on
+             * @type Function
+             *
+             * @param {String} event - Can be 'change', 'drag:start', 'drag:move' and 'drag:end'
+             * @param {Function} handler - The passed arguments of the handler will always be [x, y].
+             * @returns {Number} id - The event handler identification you'll need to unbind the handler
+             *
+             * @description
+             * Binds a handler to an event
+             *
+             * @example
+             * var id = focuspoint.on('drag:end', function () {
+             *     // for example: some API call to save the new focuspoint
+             * });
+             *
+             */
             Api.on = function (event, handler) {
                 try {
                     if (_killed) throw 'this Focuspoint.Edit has been killed';
@@ -592,6 +716,20 @@
                 }
             };
 
+            /**
+             * @memberof Focuspoint.Edit
+             * @name off
+             * @type Function
+             *
+             * @param {Number} id - The event handler identification of the handler you want to unbind
+             *
+             * @description
+             * Unbinds a handler from an event
+             *
+             * @example
+             * focuspoint.off(id);
+             *
+             */
             Api.off = function (id) {
                 try {
                     if (_killed) throw 'this Focuspoint.Edit has been killed';
@@ -604,6 +742,19 @@
                 }
             };
 
+            /**
+             * @memberof Focuspoint.Edit
+             * @name kill
+             * @type Function
+             *
+             * @description
+             * Kills the Edit instance, unbinds event handlers
+             *
+             * @example
+             * focuspoint.kill();
+             * delete focuspoint; // To fully kill the object, use 'delete focuspoint;' afterwards
+             *
+             */
             Api.kill = function () {
                 try {
                     if (_killed) throw 'this Focuspoint.Edit has already been killed';

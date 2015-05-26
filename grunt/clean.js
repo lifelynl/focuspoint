@@ -11,6 +11,9 @@ module.exports = {
     'dist': [
         'dist/*'
     ],
+    'doc': [
+        'doc/*'
+    ],
     'tmp': [
         '.grunt-tmp/'
     ]

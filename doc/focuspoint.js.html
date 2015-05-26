@@ -1,4 +1,138 @@
-/**
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Source: /src/focuspoint.js</title>
+    
+    
+    
+    
+    
+    <meta property="og:title" content=""/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"monospaceLinks":true,"cleverLinks":true,"default":{"outputSourceFiles":true},"applicationName":"Focuspoint","disqus":"","googleAnalytics":"","openGraph":{"title":"","type":"website","image":"","site_name":"","url":""},"meta":{"title":"","description":"","keyword":""},"linenums":true};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html">Focuspoint</a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+    
+        <li class="item" data-name="Focuspoint">
+            <span class="title">
+                <a href="Focuspoint.html">Focuspoint</a>
+                
+                <span class="static">static</span>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Focuspoint.Edit">
+            <span class="title">
+                <a href="Focuspoint.Edit.html">Focuspoint.Edit</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Focuspoint.Edit.current"><a href="Focuspoint.Edit.html#.current">current</a></li>
+            
+                <li data-name="Focuspoint.Edit.kill"><a href="Focuspoint.Edit.html#.kill">kill</a></li>
+            
+                <li data-name="Focuspoint.Edit.off"><a href="Focuspoint.Edit.html#.off">off</a></li>
+            
+                <li data-name="Focuspoint.Edit.on"><a href="Focuspoint.Edit.html#.on">on</a></li>
+            
+                <li data-name="Focuspoint.Edit.set"><a href="Focuspoint.Edit.html#.set">set</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Focuspoint.View">
+            <span class="title">
+                <a href="Focuspoint.View.html">Focuspoint.View</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Focuspoint.View.current"><a href="Focuspoint.View.html#.current">current</a></li>
+            
+                <li data-name="Focuspoint.View.kill"><a href="Focuspoint.View.html#.kill">kill</a></li>
+            
+                <li data-name="Focuspoint.View.set"><a href="Focuspoint.View.html#.set">set</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+    </ul>
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="focuspoint.js.html">Source: /src/focuspoint.js</h1>
+        
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @license Focuspoint v1.0.0
  * (c) 2015 Lifely
  * License: MIT
@@ -16,7 +150,7 @@
         isDOMElement: function isDOMElement (o) {
             return (
                 typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-                o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
+                o &amp;&amp; typeof o === "object" &amp;&amp; o !== null &amp;&amp; o.nodeType === 1 &amp;&amp; typeof o.nodeName==="string"
             );
         },
 
@@ -54,7 +188,7 @@
                 if (!Helpers.isDOMElement(elm)) throw 'elm is not a DOM element.';
                 if (typeof event === 'undefined') throw 'event is undefined.';
                 if (touch) {
-                    if (typeof event.touches !== 'undefined' && event.touches.length <= 0) throw 'no touches found in event.';
+                    if (typeof event.touches !== 'undefined' &amp;&amp; event.touches.length &lt;= 0) throw 'no touches found in event.';
                     if (typeof event.touches[0].pageX !== 'number') throw 'event.touches[0].pageX not found.';
                     if (typeof event.touches[0].pageY !== 'number') throw 'event.touches[0].pageY not found.';
                 } else {
@@ -92,8 +226,8 @@
                 if (!Helpers.isDOMElement(elm)) throw 'elm is not a DOM element.';
                 if (typeof x !== 'number') throw 'x is not a number.';
                 if (typeof y !== 'number') throw 'y is not a number.';
-                if (x < 0 || x > 1) throw 'x must be a number between 0 and 1.';
-                if (y < 0 || y > 1) throw 'y must be a number between 0 and 1.';
+                if (x &lt; 0 || x > 1) throw 'x must be a number between 0 and 1.';
+                if (y &lt; 0 || y > 1) throw 'y must be a number between 0 and 1.';
 
                 var bounded_x = Helpers.bound(x, 0, 1);
                 var bounded_y = Helpers.bound(y, 0, 1);
@@ -114,8 +248,8 @@
                 if (!Helpers.isDOMElement(elm)) throw 'elm is not a DOM element.';
                 if (typeof x !== 'number') throw 'x is not a number.';
                 if (typeof y !== 'number') throw 'y is not a number.';
-                if (x < 0 || x > 1) throw 'x must be a number between 0 and 1.';
-                if (y < 0 || y > 1) throw 'y must be a number between 0 and 1.';
+                if (x &lt; 0 || x > 1) throw 'x must be a number between 0 and 1.';
+                if (y &lt; 0 || y > 1) throw 'y must be a number between 0 and 1.';
 
                 elm.style.left = (x * 100) + '%';
                 elm.style.top = (y * 100) + '%';
@@ -136,7 +270,7 @@
                 if (typeof current !== 'object') throw 'current coordinates placeholder is not an object';
                 if (typeof eventSystem !== 'object') throw 'eventSystem is not an object';
                 if (typeof hide_cursor !== 'boolean') throw 'hide_cursor is not a boolean';
-                if (hide_cursor && typeof no_cursor_class !== 'string') throw 'no_cursor_class is not a string';
+                if (hide_cursor &amp;&amp; typeof no_cursor_class !== 'string') throw 'no_cursor_class is not a string';
 
                 // Start mouse position
                 var start_pos = {}, start_current = {}, touch;
@@ -232,8 +366,8 @@
         // Attach views to a focus point
         attachViews: function attachViews (view_elm, current, event_binder) {
             try {
-                if (Array.isArray(view_elm) && !Helpers.areDOMElements(view_elm)) throw 'view_elm is an array, but not all items are DOM elements';
-                if (!Array.isArray(view_elm) && !Helpers.isDOMElement(view_elm)) throw 'view_elm is not a DOM element';
+                if (Array.isArray(view_elm) &amp;&amp; !Helpers.areDOMElements(view_elm)) throw 'view_elm is an array, but not all items are DOM elements';
+                if (!Array.isArray(view_elm) &amp;&amp; !Helpers.isDOMElement(view_elm)) throw 'view_elm is not a DOM element';
                 if (typeof current !== 'object') throw 'current is not an object';
                 if (typeof current.x !== 'number') throw 'current.x is not a number';
                 if (typeof current.y !== 'number') throw 'current.y is not a number';
@@ -320,8 +454,8 @@
             try {
                 if (typeof x !== 'number') throw 'x is not a number.';
                 if (typeof y !== 'number') throw 'y is not a number.';
-                if (x < 0 || x > 1) throw 'x must be a number between 0 and 1.';
-                if (y < 0 || y > 1) throw 'y must be a number between 0 and 1.';
+                if (x &lt; 0 || x > 1) throw 'x must be a number between 0 and 1.';
+                if (y &lt; 0 || y > 1) throw 'y must be a number between 0 and 1.';
 
                 return {
                     x: x,
@@ -417,10 +551,10 @@
                 // Validations
                 if (!Helpers.isDOMElement(elm)) throw 'elm is not a DOM element.';
                 if (typeof options !== 'object' || Array.isArray(options)) throw 'options exists, but is not an object.';
-                if (typeof options.x !== 'number' && options.x) throw '"options.x" exists, but is not a number.';
-                if (typeof options.y !== 'number' && options.y) throw '"options.y" exists, but is not a number.';
-                if (typeof options.x === 'number' && (options.x < 0 || options.x > 1)) throw '"options.x" must be a number between 0 and 1.';
-                if (typeof options.y === 'number' && (options.y < 0 || options.y > 1)) throw '"options.y" must be a number between 0 and 1.';
+                if (typeof options.x !== 'number' &amp;&amp; options.x) throw '"options.x" exists, but is not a number.';
+                if (typeof options.y !== 'number' &amp;&amp; options.y) throw '"options.y" exists, but is not a number.';
+                if (typeof options.x === 'number' &amp;&amp; (options.x &lt; 0 || options.x > 1)) throw '"options.x" must be a number between 0 and 1.';
+                if (typeof options.y === 'number' &amp;&amp; (options.y &lt; 0 || options.y > 1)) throw '"options.y" must be a number between 0 and 1.';
 
                 // Defaults
                 if (typeof options.x !== 'number') options.x = 0.5;
@@ -446,15 +580,15 @@
                 // Validations
                 if (!Helpers.isDOMElement(element)) throw 'element is not a DOM element.';
                 if (typeof options !== 'object' || Array.isArray(options)) throw 'options exists, but is not an object.';
-                if (typeof options.x !== 'undefined' && typeof options.x !== 'number') throw 'options.x exists, but is not a number.';
-                if (typeof options.y !== 'undefined' && typeof options.y !== 'number') throw 'options.y exists, but is not a number.';
-                if (typeof options.x === 'number' && (options.x < 0 || options.x > 1)) throw 'options.x must be a number between 0 and 1.';
-                if (typeof options.y === 'number' && (options.y < 0 || options.y > 1)) throw 'options.y must be a number between 0 and 1.';
-                if (typeof options.view_elm !== 'undefined' && Array.isArray(options.view_elm) && !Helpers.areDOMElements(options.view_elm)) throw 'options.view_elm is an array, but not all items are elements.';
-                if (typeof options.view_elm !== 'undefined' && !Array.isArray(options.view_elm) && !Helpers.isDOMElement(options.view_elm)) throw 'options.view_elm is given, but is not a DOM element.';
-                if (typeof options.button_elm !== 'undefined' && !Helpers.isDOMElement(options.button_elm)) throw 'options.button_elm is given, but is not a DOM element.';
-                if (typeof options.hide_cursor !== 'undefined' && typeof options.hide_cursor !== 'boolean') throw 'options.hide_cursor exists, but is not a boolean.';
-                if (typeof options.no_cursor_class !== 'undefined' && typeof options.no_cursor_class !== 'string') throw 'options.no_cursor_class exists, but is not a string.';
+                if (typeof options.x !== 'undefined' &amp;&amp; typeof options.x !== 'number') throw 'options.x exists, but is not a number.';
+                if (typeof options.y !== 'undefined' &amp;&amp; typeof options.y !== 'number') throw 'options.y exists, but is not a number.';
+                if (typeof options.x === 'number' &amp;&amp; (options.x &lt; 0 || options.x > 1)) throw 'options.x must be a number between 0 and 1.';
+                if (typeof options.y === 'number' &amp;&amp; (options.y &lt; 0 || options.y > 1)) throw 'options.y must be a number between 0 and 1.';
+                if (typeof options.view_elm !== 'undefined' &amp;&amp; Array.isArray(options.view_elm) &amp;&amp; !Helpers.areDOMElements(options.view_elm)) throw 'options.view_elm is an array, but not all items are elements.';
+                if (typeof options.view_elm !== 'undefined' &amp;&amp; !Array.isArray(options.view_elm) &amp;&amp; !Helpers.isDOMElement(options.view_elm)) throw 'options.view_elm is given, but is not a DOM element.';
+                if (typeof options.button_elm !== 'undefined' &amp;&amp; !Helpers.isDOMElement(options.button_elm)) throw 'options.button_elm is given, but is not a DOM element.';
+                if (typeof options.hide_cursor !== 'undefined' &amp;&amp; typeof options.hide_cursor !== 'boolean') throw 'options.hide_cursor exists, but is not a boolean.';
+                if (typeof options.no_cursor_class !== 'undefined' &amp;&amp; typeof options.no_cursor_class !== 'string') throw 'options.no_cursor_class exists, but is not a string.';
 
                 // Defaults
                 if (typeof options.x !== 'number') options.x = 0.5;
@@ -555,8 +689,8 @@
                     if (_killed) throw 'this Focuspoint.View has been killed';
                     if (typeof x !== 'number') throw 'the given x coordinate is not a number';
                     if (typeof y !== 'number') throw 'the given y coordinate is not a number';
-                    if (x < 0 || x > 1) throw 'the x coordinate must be a number between 0 and 1';
-                    if (y < 0 || y > 1) throw 'the y coordinate must be a number between 0 and 1';
+                    if (x &lt; 0 || x > 1) throw 'the x coordinate must be a number between 0 and 1';
+                    if (y &lt; 0 || y > 1) throw 'the y coordinate must be a number between 0 and 1';
 
                     var output = Helpers.setBackgroundPositionToElm(_opts.elm, x, y);
                     if (!output.error) {
@@ -669,8 +803,8 @@
                     if (_killed) throw 'this Focuspoint.Edit has been killed';
                     if (typeof x !== 'number') throw 'the given x coordinate is not a number';
                     if (typeof y !== 'number') throw 'the given y coordinate is not a number';
-                    if (x < 0 || x > 1) throw 'the x coordinate must be a number between 0 and 1';
-                    if (y < 0 || y > 1) throw 'the y coordinate must be a number between 0 and 1';
+                    if (x &lt; 0 || x > 1) throw 'the x coordinate must be a number between 0 and 1';
+                    if (y &lt; 0 || y > 1) throw 'the y coordinate must be a number between 0 and 1';
 
                     var output = Helpers.setPositionToButtonElement(_opts.button_elm, x, y);
                     if (!output.error) {
@@ -774,3 +908,24 @@
     };
 
 })(window);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Tue May 26 2015 15:26:12 GMT+0200 (CEST)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

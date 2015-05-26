@@ -8,7 +8,7 @@ module.exports = {
     },
     js: {
         files: [ 'src/**/*.js' ],
-        tasks: [ 'clean:tmp', 'copy:src-js', 'uglify:js', 'clean:dist-js', 'copy:dist-js', 'clean:tmp' ]
+        tasks: [ 'clean:tmp', 'clean:doc', 'jsdoc:focuspoint-api', 'copy:src-js', 'uglify:js', 'clean:dist-js', 'copy:dist-js', 'clean:tmp' ]
     },
 
     livereload: {

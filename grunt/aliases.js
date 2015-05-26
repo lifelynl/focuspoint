@@ -26,6 +26,10 @@ module.exports = {
         // Clean up temporary folder
         'clean:tmp',
 
+        // Generate doc
+        'clean:doc',
+        'jsdoc:focuspoint-api',
+
         // Copy from source
         'copy:src-js',
         'copy:src-css',
