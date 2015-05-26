@@ -188,7 +188,7 @@
                 // Handlers
                 var start = function (event) {
                     event.preventDefault();
-                    touch = event.constructor.name === 'TouchEvent' && event.touches;
+                    touch = typeof event.touches !== 'undefined';
                     change('start', event);
                     document.addEventListener(touch ? 'touchmove' : 'mousemove', move);
                     document.addEventListener(touch ? 'touchend' : 'mouseup', end);
