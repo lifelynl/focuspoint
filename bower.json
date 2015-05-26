@@ -13,10 +13,11 @@
   ],
   "ignore": [
     "**/.*",
+    "src",
     "bower_components",
+    "node_modules",
     "doc",
     "grunt",
-    "node_modules",
     "demo"
   ],
   "dependencies": {
