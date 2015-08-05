@@ -305,7 +305,7 @@
 
         // Internal error
         InternalError: function InternalErrorConstructor (context, msg) {
-            console.warn('Focuspoint internal error in ' + context + ':', msg);
+            console.error('Focuspoint internal error in ' + context + ':', msg);
 
             return {
                 error: true,
