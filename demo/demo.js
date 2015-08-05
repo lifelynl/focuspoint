@@ -1,38 +1,33 @@
 /*****************************************************/
 /* Edit & view */
 /*****************************************************/
-var initEditViewFocuspoint = function () {
-    var edit_element = document.querySelector('.lfy-focuspoint-edit');
-    var button_element = edit_element.querySelector('.lfy-focuspoint-button');
-    var view_element = document.querySelector('.lfy-focuspoint-view');
-
-    var focuspoint = new Focuspoint.Edit(edit_element, {
-        button_elm: button_element,
-        view_elm: view_element
-    });
-
-    return focuspoint;
-};
-
-var edit_focuspoint = initEditViewFocuspoint();
+var edit_element = document.getElementById('edit');
+var edit_focuspoint = new Focuspoint.Edit(edit_element, {
+    view_elm: document.getElementById('view2'),
+    x: 0.85,
+    y: 0.15
+});
 
 
 /*****************************************************/
 /* View */
 /*****************************************************/
-var initViewFocuspoint = function (edit_focuspoint) {
-    var view_element = document.querySelector('.lfy-focuspoint-view.second');
-
-    var focuspoint = new Focuspoint.View(view_element, {
-        x: edit_focuspoint.current.x,
-        y: edit_focuspoint.current.y,
-    });
-
-    edit_focuspoint.on('change', function (x, y) {
-        focuspoint.set(x, y);
-    });
-
-    return focuspoint;
+var common_options = {
+    x: edit_focuspoint.current.x,
+    y: edit_focuspoint.current.y
 };
 
-var view_focuspoint = initViewFocuspoint(edit_focuspoint);
+var view_element1 = document.getElementById('view1');
+var view_focuspoint1 = new Focuspoint.View(view_element1, common_options);
+
+var view_element3 = document.getElementById('view3');
+var view_focuspoint3 = new Focuspoint.View(view_element3, common_options);
+
+var view_element4 = document.getElementById('view4');
+var view_focuspoint4 = new Focuspoint.View(view_element4, common_options);
+
+edit_focuspoint.on('change', function (x, y) {
+    view_focuspoint1.set(x, y);
+    view_focuspoint3.set(x, y);
+    view_focuspoint4.set(x, y);
+});

@@ -1,8 +1,137 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .demo {
+    position: relative;
+    min-width: 1153px;
+    min-height: 480px;
+
+    background-color: #455575;
     font-family: sans-serif;
 }
 
-.demo .lfy-focuspoint-view {
-    width: 640px;
-    height: 250px;
-}
+    .demo .lfy-focuspoint-view {
+        width: 640px;
+        height: 250px;
+    }
+
+    .demo .lfy-focuspoint-button {
+        width: 80px;
+        height: 80px;
+        margin-top: -40px; /* set button's origin to center */
+        margin-left: -40px;
+
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+
+        background: none;
+
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+        .demo .lfy-focuspoint-button span {
+            display: block;
+
+            width: 40px;
+            height: 40px;
+            margin-left: 20px;
+
+            cursor: pointer;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            background: rgb(239,119,134); /* Old browsers */
+            background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VmNzc4NiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlMzU0NjMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+            background: -moz-linear-gradient(top,  rgba(239,119,134,1) 0%, rgba(227,84,99,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,119,134,1)), color-stop(100%,rgba(227,84,99,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(239,119,134,1) 0%,rgba(227,84,99,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(239,119,134,1) 0%,rgba(227,84,99,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(239,119,134,1) 0%,rgba(227,84,99,1) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(239,119,134,1) 0%,rgba(227,84,99,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ef7786', endColorstr='#e35463',GradientType=0 ); /* IE6-8 */
+        }
+
+    .demo .lfy-focuspoint-edit.lfy-focuspoint-edit-hidecursor .lfy-focuspoint-button span {
+        cursor: none;
+    }
+
+    .demo .canvases {
+        position: absolute;
+        width: 1073px;
+        height: 400px;
+        background-image: url('canvases.png');
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        padding: 40px;
+
+        /* center positioning */
+        left: 50%;
+        top: 42%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+
+    }
+
+        .demo .canvases h1 {
+            display: block;
+            text-align: center;
+            color: transparent;
+        }
+
+        .demo .canvases h1 img {
+            width: 200px;
+        }
+
+        .demo .canvases figure {
+            position: absolute;
+            margin: 0;
+            background-image: url('wolfaaahoooeee.png');
+        }
+
+        .demo .canvases figure#view1 {
+            top: 276px;
+            left: 260px;
+            width: 100px;
+            height: 152px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        .demo .canvases figure#view2 {
+            top: 212px;
+            left: 440px;
+            width: 251px;
+            height: 161px;
+            -webkit-border-radius: 1px;
+            -moz-border-radius: 1px;
+            border-radius: 1px;
+        }
+
+        .demo .canvases figure#view3 {
+            top: 301px;
+            left: 761px;
+            width: 153px;
+            height: 101px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        .demo .canvases figure#view4 {
+            top: 381px;
+            left: 980px;
+            width: 123px;
+            height: 55px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }

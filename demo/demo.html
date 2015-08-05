@@ -2,28 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Focuspoint Demonstration</title>
+    <title>Focuspoint Demo</title>
 
     <link rel="stylesheet" href="../dist/focuspoint.css">
     <link rel="stylesheet" href="demo.css">
 </head>
 <body class="demo">
-    <h1>The focuspoint</h1>
 
-    <h2>Edit and view</h2>
-    <figure style="background-image: url('image.jpg');" class="lfy-focuspoint-view">
-        <div class="lfy-focuspoint-edit">
-            <button class="lfy-focuspoint-button"></button>
-        </div>
-    </figure>
+    <div class="canvases">
 
-    <h2>View only</h2>
-    <figure style="background-image: url('image.jpg'); width: 300px; height:400px;" class="lfy-focuspoint-view second"></figure>
+        <!-- Title -->
+        <h1><img src="title.png" alt="Focuspoint"></h1>
 
+        <!-- Tablet -->
+        <figure class="lfy-focuspoint-view" id="view1"></figure>
+
+        <!-- Desktop -->
+        <figure class="lfy-focuspoint-view" id="view2">
+            <div class="lfy-focuspoint-edit" id="edit">
+                <button class="lfy-focuspoint-button">
+                    <span></span>
+                </button>
+            </div>
+        </figure>
+
+        <!-- Notebook -->
+        <figure class="lfy-focuspoint-view" id="view3"></figure>
+
+        <!-- Phone -->
+        <figure class="lfy-focuspoint-view" id="view4"></figure>
+    </div>
 
     <script src="../bower_components/classlist/classList.min.js"></script>
     <script src="../bower_components/requestAnimationFrame/app/requestAnimationFrame.js"></script>
     <script src="../dist/focuspoint.js"></script>
+
     <script src="demo.js"></script>
 </body>
 </html>
