@@ -1,5 +1,5 @@
 /*****************************************************/
-/* Edit & view */
+/* Edit */
 /*****************************************************/
 var edit_element = document.getElementById('edit');
 var edit_focuspoint = new Focuspoint.Edit(edit_element, {
@@ -30,4 +30,6 @@ edit_focuspoint.on('change', function (x, y) {
     view_focuspoint1.set(x, y);
     view_focuspoint3.set(x, y);
     view_focuspoint4.set(x, y);
+
+    edit_element.classList.add('changed')
 });

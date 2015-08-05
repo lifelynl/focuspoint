@@ -37,6 +37,7 @@ body {
     }
 
         .demo .lfy-focuspoint-button span {
+            position: relative;
             display: block;
 
             width: 40px;
@@ -58,8 +59,57 @@ body {
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ef7786', endColorstr='#e35463',GradientType=0 ); /* IE6-8 */
         }
 
+        @-webkit-keyframes pulse {
+            0% {
+                opacity: 0;
+                -webkit-transform: scale(0.9);
+                -moz-transform: scale(0.9);
+                transform: scale(0.9);
+            }
+            40% {
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: scale(2);
+                -moz-transform: scale(2);
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .demo .lfy-focuspoint-button span:before,
+        .demo .lfy-focuspoint-button span:after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            border: 1px solid rgba(227,84,99,0.8);
+            opacity: 0;
+            -webkit-transform: scale(0.9);
+            -moz-transform: scale(0.9);
+            transform: scale(0.9);
+            -webkit-animation: pulse 1.5s infinite;
+            -moz-animation: pulse 1.5s infinite;
+            animation: pulse 1.5s infinite;
+        }
+
+        .demo .lfy-focuspoint-button span:before {
+            -webkit-animation-delay: 0.2s;
+            -moz-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
     .demo .lfy-focuspoint-edit.lfy-focuspoint-edit-hidecursor .lfy-focuspoint-button span {
         cursor: none;
+    }
+
+    .demo .lfy-focuspoint-edit.changed .lfy-focuspoint-button span:before,
+    .demo .lfy-focuspoint-edit.changed .lfy-focuspoint-button span:after {
+        -webkit-animation: none;
+        -moz-animation: none;
+        animation: none;
     }
 
     .demo .canvases {
