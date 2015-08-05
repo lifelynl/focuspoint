@@ -32,6 +32,10 @@ __Concept video:__
 - To apply the focuspoint to an image in your application, we just use `background-size: cover` in combination with a `background-position` CSS-rule on your element.
 - To create a focuspoint editor in your image upload module, we will render a draggable dot for you. Then you can simply read out the x and y values to save them to your database whenever you want.
 
+## API
+
+For the full API, please visit the [wiki on Github](https://github.com/lifelynl/focuspoint/wiki/API "/wiki/API").
+
 ## Basic example for the editor
 
 ```html
