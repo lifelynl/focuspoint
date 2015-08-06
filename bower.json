@@ -1,6 +1,6 @@
 {
   "name": "lifely-focuspoint",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A beautiful library which deals with the problem of ugly cropped images.",
   "authors": [
     "Lifely <info@lifely.nl>",

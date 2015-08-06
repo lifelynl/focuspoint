@@ -1,5 +1,5 @@
 /**
- * @license Focuspoint v1.0.2
+ * @license Focuspoint v1.0.3
  * (c) 2015 Lifely
  * License: MIT
  */
@@ -21,7 +21,7 @@
         },
 
         // Returns true if all items in the given array are DOM elements
-        areDOMElements: function areDOMElements (array) {
+        areDOMElements: function areDOMElements (arr) {
             try {
                 if (typeof arr !== 'object' || !Array.isArray(arr)) throw 'arr is not an array.';
 
