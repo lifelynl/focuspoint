@@ -233,7 +233,7 @@
         attachViews: function attachViews (view_elm, current, event_binder) {
             try {
                 if (Array.isArray(view_elm) && !Helpers.areDOMElements(view_elm)) throw 'view_elm is an array, but not all items are DOM elements';
-                if (typeof view_elm !== 'object' || !Helpers.isDOMElement(view_elm)) throw 'view_elm is not a DOM element';
+                if (!Array.isArray(view_elm) && (typeof view_elm !== 'object' || !Helpers.isDOMElement(view_elm))) throw 'view_elm is not a DOM element';
                 if (typeof current !== 'object') throw 'current is not an object';
                 if (typeof current.x !== 'number') throw 'current.x is not a number';
                 if (typeof current.y !== 'number') throw 'current.y is not a number';
@@ -451,7 +451,7 @@
                 if (typeof options.x === 'number' && (options.x < 0 || options.x > 1)) throw 'options.x must be a number between 0 and 1.';
                 if (typeof options.y === 'number' && (options.y < 0 || options.y > 1)) throw 'options.y must be a number between 0 and 1.';
                 if (typeof options.view_elm !== 'undefined' && (Array.isArray(options.view_elm) && !Helpers.areDOMElements(options.view_elm))) throw 'options.view_elm is an array, but not all items are elements.';
-                if (typeof options.view_elm !== 'undefined' && (typeof options.view_elm !== 'object' || !Helpers.isDOMElement(options.view_elm))) throw 'options.view_elm is given, but is not a DOM element.';
+                if (typeof options.view_elm !== 'undefined' && (!Array.isArray(options.view_elm) && (typeof options.view_elm !== 'object' || !Helpers.isDOMElement(options.view_elm)))) throw 'options.view_elm is given, but is not a DOM element.';
                 if (typeof options.button_elm !== 'undefined' && !Helpers.isDOMElement(options.button_elm)) throw 'options.button_elm is given, but is not a DOM element.';
                 if (typeof options.hide_cursor !== 'undefined' && typeof options.hide_cursor !== 'boolean') throw 'options.hide_cursor exists, but is not a boolean.';
                 if (typeof options.no_cursor_class !== 'undefined' && typeof options.no_cursor_class !== 'string') throw 'options.no_cursor_class exists, but is not a string.';
