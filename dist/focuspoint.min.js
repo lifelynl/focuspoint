@@ -1,5 +1,5 @@
 /**
- * @license Focuspoint v1.0.4
+ * @license Focuspoint v1.0.5
  * (c) 2015 Lifely
  * License: MIT
  */
