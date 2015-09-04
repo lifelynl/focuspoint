@@ -1,5 +1,5 @@
 {
-  "name": "lifely-focuspoint",
+  "name": "focuspoint",
   "description": "",
   "version": "1.0.5",
   "author": "Lifely <info@lifely.nl>",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/lifelynl/focuspoint"
   },
-  "main": "Gruntfile.js",
+  "main": "dist/focuspoint.js",
   "scripts": {
     "distribute": "node_modules/.bin/grunt distribute",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,9 +27,9 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jsdoc": "^0.6.4",
     "jaguarjs-jsdoc": "git://github.com/davidshimjs/jaguarjs-jsdoc",
-    "load-grunt-config": "^0.17.1"
+    "load-grunt-config": "^0.17.1",
+    "bower": "^1.4.1"
   },
   "dependencies": {
-    "bower": "^1.4.1"
   }
 }
