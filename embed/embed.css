@@ -1,0 +1,24 @@
+.demo {
+    min-width: 720px;
+}
+
+    .demo .canvases {
+        width: 639px;
+        height: 350px;
+        background-image: url('canvases-compact.png');
+    }
+
+        .demo .canvases figure#view1 {
+            top: 226px;
+            left: 47px;
+        }
+
+        .demo .canvases figure#view2 {
+            top: 162px;
+            left: 227px;
+        }
+
+        .demo .canvases figure#view4 {
+            top: 331px;
+            left: 544px;
+        }
