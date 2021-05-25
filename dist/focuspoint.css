@@ -18,8 +18,7 @@
 /********************************/
 .lfy-focuspoint-view {
     position: relative;
-    -webkit-background-size: cover;
-            background-size: cover;
+    background-size: cover;
 }
 
     .lfy-focuspoint-view .lfy-focuspoint-edit {
